@@ -140,12 +140,12 @@ export default {
             <span class="input-group-text" id="inputGroup-currentAnswer-lg">{{ currentTask.multiplier }} · {{ currentTask.multiplicand }} =</span>
 
             <template v-if="status === IN_PROGRESS">
-              <input type="text" v-focus class="form-control" aria-describedby="inputGroup-currentAnswer-lg"
+              <input type="number" inputmode="numeric" v-focus class="form-control" aria-describedby="inputGroup-currentAnswer-lg"
                      id="currentAnswer" v-model="currentAnswer" autocomplete="off">
               <button id="submit" class="btn btn-outline-secondary" @click="submitAnswer()">Beantworten</button>
             </template>
             <template v-if="status === REVIEW_RESULT">
-              <input type="text" class="form-control bg-danger bold" v-bind:value="currentTask.result" disabled>
+              <input type="number" inputmode="numeric" class="form-control bg-danger bold" v-bind:value="currentTask.result" disabled>
               <button v-focus id="nextTask" class="btn btn-outline-secondary" @click="nextTask()">Weiter</button>
             </template>
           </div>
