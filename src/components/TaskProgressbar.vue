@@ -18,7 +18,7 @@ export default {
       <div class="progress-bar" role="progressbar"
            v-bind:style="'width: ' + calculateProgressbar() + '%'"
            v-bind:aria-valuenow="amount - length" aria-valuemin="1"
-           v-bind:aria-valuemax="amount">Frage {{ amount - length }} / {{ amount }}
+           v-bind:aria-valuemax="amount"> {{ amount - length }} / {{ amount }}
       </div>
     </div>
 </template>
