@@ -1,16 +1,16 @@
 <script setup>
 import {ref, computed} from 'vue'
-import Home from './views/Home.vue'
-import Einmaleins from './views/Einmaleins.vue'
-import Results from './views/Results.vue'
-import About from './views/About.vue'
-import NotFound from './views/NotFound.vue'
+import HomeView from './views/HomeView.vue'
+import EinmaleinsView from './views/EinmaleinsView.vue'
+import ResultsView from './views/ResultsView.vue'
+import AboutView from './views/AboutView.vue'
+import NotFoundView from './views/NotFoundView.vue'
 
 const routes = {
-  '/': Home,
-  '/einmaleins': Einmaleins,
-  '/ergebnisse': Results,
-  '/ueber': About
+  '/': HomeView,
+  '/einmaleins': EinmaleinsView,
+  '/ergebnisse': ResultsView,
+  '/ueber': AboutView
 }
 
 const currentPath = ref(window.location.hash)
@@ -20,7 +20,7 @@ window.addEventListener('hashchange', () => {
 })
 
 const currentView = computed(() => {
-  return routes[currentPath.value.slice(1) || '/'] || NotFound
+  return routes[currentPath.value.slice(1) || '/'] || NotFoundView
 })
 
 </script>
