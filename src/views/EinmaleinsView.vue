@@ -122,8 +122,7 @@ export default {
   <div class="container">
     <h1>Einmaleins - Training</h1>
     <template v-if="status === INITIATED">
-      <h2 class="lead">Wieviele Aufgaben magst du rechnen?</h2>
-
+      <p class="lead">Wieviele Aufgaben magst du rechnen?</p>
       <div class="btn-group btn-group-lg" role="group">
         <button class="btn btn-primary" @click="start(10)">10</button>
         <button class="btn btn-primary" @click="start(20)">20</button>
