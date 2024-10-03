@@ -41,7 +41,7 @@ export default {
 </script>
 <template>
   <div class="container">
-    <h1 class="display-1">Ergebnisse</h1>
+    <h1>Ergebnisse</h1>
     <template v-if="sortedTasks.length > 0">
       <div>
         <p class="lead">Deine letzten Ergebnisse</p>
