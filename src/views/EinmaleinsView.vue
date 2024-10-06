@@ -78,6 +78,7 @@ export default {
     start(amount) {
       this.calculateWeight()
       this.currentRound.amount = amount
+      this.currentRound.correct = 0
       this.selectedTasks = RandomSelection.selectRandomValues(this.tasks, this.taskWeights, amount)
       this.nextTask()
     },
