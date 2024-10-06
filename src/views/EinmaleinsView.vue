@@ -24,7 +24,7 @@ export default {
     TaskResult
   },
   data: () => ({
-    DEFAULT_WEIGHT: 1,
+    DEFAULT_WEIGHT: 100,
     INITIATED: INITIATED,
     IN_PROGRESS: IN_PROGRESS,
     REVIEW_RESULT: REVIEW_RESULT,
@@ -78,6 +78,7 @@ export default {
     start(amount) {
       this.calculateWeight()
       this.currentRound.amount = amount
+      this.currentRound.correct = 0
       this.selectedTasks = RandomSelection.selectRandomValues(this.tasks, this.taskWeights, amount)
       this.nextTask()
     },
@@ -136,23 +137,51 @@ export default {
 
         <form id="task-form" onsubmit="return false;">
           <div class="input-group input-group-lg mb-3">
-            <span class="input-group-text" id="inputGroup-currentAnswer-lg">{{ currentTask.multiplier }} · {{ currentTask.multiplicand }} =</span>
+            <span class="input-group-text" id="inputGroup-currentAnswer-lg">{{
+                currentTask.multiplier
+              }} · {{ currentTask.multiplicand }} =</span>
 
             <template v-if="status === IN_PROGRESS">
-              <input type="number" inputmode="numeric" v-focus class="form-control" aria-describedby="inputGroup-currentAnswer-lg"
+              <input type="number" inputmode="numeric" v-focus class="form-control"
+                     aria-describedby="inputGroup-currentAnswer-lg"
                      id="currentAnswer" v-model="currentAnswer" autocomplete="off">
               <button id="submit" class="btn btn-outline-secondary" @click="submitAnswer()">Beantworten</button>
             </template>
             <template v-if="status === REVIEW_RESULT">
-              <input type="number" inputmode="numeric" class="form-control bg-danger bold" v-bind:value="currentTask.result" disabled>
+              <input type="number" inputmode="numeric" class="form-control bg-danger bold"
+                     v-bind:value="currentTask.result" disabled>
               <button v-focus id="nextTask" class="btn btn-outline-secondary" @click="nextTask()">Weiter</button>
             </template>
           </div>
         </form>
+        <template v-if="status === REVIEW_RESULT">
+          <hr>
+          <div>
+            <p class="lead">Multiplikationstabelle <strong>{{ currentTask.multiplicand }}</strong></p>
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">·</th>
+                <td v-for="n in 10" class="table-primary" :class="currentTask.multiplier === n ? 'table-success' : ''">
+                  {{ n }}
+                </td>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <th scope="row" class="table-success">{{ currentTask.multiplicand }}</th>
+                <td v-for="n in 10" :class="currentTask.multiplier === n ? 'table-success' : ''">
+                  {{ currentTask.multiplicand * n }}
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </template>
       </div>
     </template>
     <template v-if="status === FINISHED">
-      <h3>Ergebnis</h3>
+      <p class="lead">Ergebnis</p>
       <TaskResult :amount="currentRound.amount" :correct="currentRound.correct"/>
       <button v-focus id="back" class="btn btn-outline-secondary" @click="initialize()">Zurück zum Training</button>
     </template>
