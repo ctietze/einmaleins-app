@@ -24,7 +24,7 @@ export default {
     TaskResult
   },
   data: () => ({
-    DEFAULT_WEIGHT: 1,
+    DEFAULT_WEIGHT: 100,
     INITIATED: INITIATED,
     IN_PROGRESS: IN_PROGRESS,
     REVIEW_RESULT: REVIEW_RESULT,
@@ -152,7 +152,7 @@ export default {
       </div>
     </template>
     <template v-if="status === FINISHED">
-      <h3>Ergebnis</h3>
+      <p class="lead">Ergebnis</p>
       <TaskResult :amount="currentRound.amount" :correct="currentRound.correct"/>
       <button v-focus id="back" class="btn btn-outline-secondary" @click="initialize()">Zurück zum Training</button>
     </template>
