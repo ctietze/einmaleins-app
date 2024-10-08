@@ -11,13 +11,13 @@
 a,
 .green {
   text-decoration: none;
-  color: #a98e60;
+  color: #ffc368;
   transition: 0.4s;
 }
 
 @media (hover: hover) {
   a:hover {
-    background-color: #fad86d;
+    background-color: #ffc368;
   }
 }
 
