@@ -1,4 +1,7 @@
 # The latest updates to the Einmaleins Trainer
+
+## 0.2.0
+- feat: Add calculation method "division" to the trainer
 ## 0.1.0
 
 - feat: Show the multiplication table of the current multiplicand if the user entered a wrong answer

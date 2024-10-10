@@ -49,6 +49,7 @@ export default {
             weights = weights.toSpliced(index, 1)
             selectedValues.push(random)
         }
+        console.log(selectedValues)
         return selectedValues
     },
 }
